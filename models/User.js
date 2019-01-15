@@ -6,7 +6,7 @@ const userSchema = new Schema({
 	accessToken: String,
 	refreshToken: String,
 	profile: Object,
-	created: { type: Date, default: Date.now },
+	created: { type: Date, default: Date.now }
 });
 
 mongoose.model("users", userSchema);
