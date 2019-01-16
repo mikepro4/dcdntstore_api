@@ -18,6 +18,7 @@ const artworkSchema = new Schema({
         medium: String,
         large: String,
     },
+    sourceId: String,
     links: {
         vector: String,
         raster: String,

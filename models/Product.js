@@ -14,6 +14,7 @@ const productSchema = new Schema({
     labelId: String,
     order: Number,
     productSourceId: String,
+    showInPreview: {type: Boolean, default: false},
     productImages: [
         {
             title: String,
