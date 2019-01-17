@@ -8,14 +8,14 @@ module.exports = app => {
 	// ===========================================================================
 
 	app.post("/shapes/search", async (req, res) => {
-		const { criteria, sortProperty, offset, limit } = req.body;
+		const { criteria, sortProperty, offset, limit, order } = req.body;
 		const query = Shape.find(buildQuery(criteria))
-			.sort({ [sortProperty]: -1 })
+			.sort({ [sortProperty]: order })
 			.skip(offset)
 			.limit(limit);
 
 		return Promise.all(
-			[query, Jam.find(buildQuery(criteria)).countDocuments()]
+			[query, Shape.find(buildQuery(criteria)).countDocuments()]
 		).then(
 			results => {
 				return res.json({
@@ -92,7 +92,7 @@ const buildQuery = criteria => {
 
 	if (criteria.userId) {
 		_.assign(query, {
-			"metadata.createdBy": {
+			"createdBy": {
 				$eq: criteria.userId
 			}
 		});
