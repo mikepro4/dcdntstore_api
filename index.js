@@ -10,6 +10,7 @@ const PUBLIC_DIR = "public";
 const STATIC_DIR = "static";
 
 require("./models/User");
+require("./models/Shape");
 
 mongoose.Promise = global.Promise;
 const options = {
@@ -36,6 +37,7 @@ app.use(express.static(PUBLIC_DIR));
 
 require("./services/passport");
 require("./routes/authRoutes")(app);
+require("./routes/shapeRoutes")(app);
 
 
 app.get("/", (req, res) => {
