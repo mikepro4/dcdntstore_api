@@ -7,8 +7,8 @@ const shapeSchema = new Schema({
     metadata: {
         title: String,
         description: String,
-        catalogNumber: Number,
-        urlName: String,
+        catalogNumber: {type: String, default: "DCDNT – 0000"},
+        urlName: {type: String, default: "shape"},
         status: {type: String, default: "private"},
         discountEnabled: {type: Boolean, default: false},
         discountAmount: {type: Number, default: 0},

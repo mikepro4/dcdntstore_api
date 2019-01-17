@@ -9,6 +9,11 @@ const labelSchema = new Schema({
     status: {type: String, default: "private"},
     color: String,
     position: String,
+    images: {
+        small: String,
+        medium: String,
+        large: String,
+    },
 });
 
 mongoose.model("labels", labelSchema);
