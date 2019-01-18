@@ -107,7 +107,7 @@ const buildQuery = criteria => {
 	if (criteria.title) {
 		_.assign(query, {
 			"metadata.title": {
-				$regex: new RegExp("^" + criteria.title),
+				$regex: new RegExp(criteria.title),
 				$options: "i"
 			}
 		});
@@ -116,7 +116,7 @@ const buildQuery = criteria => {
 	if (criteria.description) {
 		_.assign(query, {
 			"metadata.description": {
-				$regex: new RegExp("^" + criteria.description),
+				$regex: new RegExp(criteria.description),
 				$options: "i"
 			}
 		});
@@ -125,7 +125,7 @@ const buildQuery = criteria => {
 	if (criteria.catalogNumber) {
 		_.assign(query, {
 			"metadata.catalogNumber": {
-				$regex: new RegExp("^" + criteria.catalogNumber),
+				$regex: new RegExp(criteria.catalogNumber),
 				$options: "i"
 			}
 		});
@@ -134,7 +134,7 @@ const buildQuery = criteria => {
 	if (criteria.urlName) {
 		_.assign(query, {
 			"metadata.urlName": {
-				$regex: new RegExp("^" + criteria.urlName),
+				$regex: new RegExp(criteria.urlName),
 				$options: "i"
 			}
 		});
