@@ -7,7 +7,7 @@ const shapeSchema = new Schema({
     metadata: {
         title: String,
         description: String,
-        catalogNumber: {type: String, default: "DCDNT – 0000"},
+        catalogNumber: {type: String, default: "0000"},
         urlName: {type: String, default: "shape"},
         status: {type: String, default: "private"},
         discountEnabled: {type: Boolean, default: false},
@@ -18,9 +18,9 @@ const shapeSchema = new Schema({
         isHighlighted: {type: Boolean, default: false},
         highlightedOrder: Number,
         images: {
-            small: String,
-            medium: String,
-            large: String,
+            small: {type: String, default: null },
+            medium: {type: String, default: null },
+            large: {type: String, default: null },
         },
         links: {
             vectorPurchase: String,
@@ -37,5 +37,23 @@ const shapeSchema = new Schema({
         }
     }
 });
+
+shapeSchema.index({
+	"metadata.title": "text",
+	"metadata.description": "text",
+	"metadata.catalogNumber": "text",
+    "metadata.urlName": "text"
+});
+shapeSchema.index({
+    "metadata.status": 1,
+});
+shapeSchema.index({
+    "metadata.isHighlighted": 1
+});
+
+
+const Shapes = mongoose.model("shapes", shapeSchema);
+
+Shapes.createIndexes();
 
 mongoose.model("shapes", shapeSchema);

@@ -97,4 +97,58 @@ const buildQuery = criteria => {
 			}
 		});
 	}
+
+	if (criteria.title) {
+		_.assign(query, {
+			"metadata.title": {
+				$regex: new RegExp("^" + criteria.title),
+				$options: "i"
+			}
+		});
+	}
+
+	if (criteria.description) {
+		_.assign(query, {
+			"metadata.description": {
+				$regex: new RegExp("^" + criteria.description),
+				$options: "i"
+			}
+		});
+	}
+
+	if (criteria.catalogNumber) {
+		_.assign(query, {
+			"metadata.catalogNumber": {
+				$regex: new RegExp("^" + criteria.catalogNumber),
+				$options: "i"
+			}
+		});
+	}
+
+	if (criteria.urlName) {
+		_.assign(query, {
+			"metadata.urlName": {
+				$regex: new RegExp("^" + criteria.urlName),
+				$options: "i"
+			}
+		});
+	}
+
+	if (criteria.status) {
+		_.assign(query, {
+			"metadata.status": {
+				$eq: criteria.status
+			}
+		});
+	}
+
+	if (criteria.isHighlighted) {
+		_.assign(query, {
+			"metadata.isHighlighted": {
+				$eq: criteria.isHighlighted
+			}
+		});
+	}
+
+	return query
 };
