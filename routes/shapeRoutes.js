@@ -9,8 +9,14 @@ module.exports = app => {
 
 	app.post("/shapes/search", async (req, res) => {
 		const { criteria, sortProperty, offset, limit, order } = req.body;
+		let adjustSortProperty 
+		if (sortProperty == "createdAt") {
+			adjustSortProperty = sortProperty
+		} else {
+			adjustSortProperty = "metadata." + sortProperty
+		}
 		const query = Shape.find(buildQuery(criteria))
-			.sort({ [sortProperty]: order })
+			.sort({ [adjustSortProperty]: order })
 			.skip(offset)
 			.limit(limit);
 
