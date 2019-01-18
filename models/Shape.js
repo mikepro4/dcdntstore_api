@@ -15,7 +15,7 @@ const shapeSchema = new Schema({
         labelEnabled: {type: Boolean, default: false},
         labelId: String,
         order: Number,
-        isHighlighted: Boolean,
+        isHighlighted: {type: Boolean, default: false},
         highlightedOrder: Number,
         images: {
             small: String,
@@ -28,6 +28,12 @@ const shapeSchema = new Schema({
             instagram: String,
             dribbble: String,
             behance: String,
+        },
+        math: {
+            function: {type: String, default: null },
+            bold: {type: Number, default: null },
+            step: {type: Number, default: null },
+            freq: {type: Number, default: null },
         }
     }
 });
