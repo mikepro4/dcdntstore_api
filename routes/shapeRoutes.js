@@ -47,13 +47,13 @@ module.exports = app => {
 				_id: req.body.shapeId
 			},
 			{
-				$set: { metadata: req.body.newMetadata }
+				$set: { metadata: req.body.newShape }
 			},
 			async (err, info) => {
 				if (err) res.status(400).send({ error: "true", error: err });
 				if (info) {
 					Shape.findOne({ _id: req.body.shapeId }, async (err, shape) => {
-						if (jam) {
+						if (shape) {
 							res.json({ success: "true", info: info, shape: shape });
 						}
 					});
