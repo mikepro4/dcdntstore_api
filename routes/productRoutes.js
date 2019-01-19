@@ -122,5 +122,13 @@ const buildQuery = criteria => {
 		});
 	}
 
+	if (criteria.shapeId) {
+		_.assign(query, {
+			"metadata.shapeId": {
+				$eq: criteria.shapeId
+			}
+		});
+	}
+
 	return query
 };

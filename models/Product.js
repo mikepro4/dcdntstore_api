@@ -7,7 +7,7 @@ const productSchema = new Schema({
     metadata: {
         title: String,
         description: String,
-        shapeId: String,
+        shapeId: {type: String, default: null },
         productTypeId: String,
         status: {type: String, default: "private"},
         discountEnabled: {type: Boolean, default: false},
