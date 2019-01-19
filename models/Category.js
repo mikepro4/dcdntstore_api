@@ -2,15 +2,18 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const categorySchema = new Schema({
-    created: { type: Date, default: Date.now },
-    title: String,
-    description: String,
-    urlName: String,
-    status: {type: String, default: "private"},
-    images: {
-        small: String,
-        medium: String,
-        large: String,
+    createdAt: { type: Date, default: Date.now },
+    createdBy: String,
+    metadata: {
+        title: String,
+        description: String,
+        urlName: String,
+        status: {type: String, default: "private"},
+        images: {
+            small: String,
+            medium: String,
+            large: String,
+        }
     },
     parentCategories: [
 		{

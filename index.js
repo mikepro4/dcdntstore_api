@@ -12,6 +12,7 @@ const STATIC_DIR = "static";
 require("./models/User");
 require("./models/Shape");
 require("./models/Product");
+require("./models/Category");
 
 mongoose.Promise = global.Promise;
 const options = {
@@ -40,6 +41,7 @@ require("./services/passport");
 require("./routes/authRoutes")(app);
 require("./routes/shapeRoutes")(app);
 require("./routes/productRoutes")(app);
+require("./routes/categoryRoutes")(app);
 
 
 app.get("/", (req, res) => {
