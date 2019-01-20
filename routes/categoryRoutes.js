@@ -91,6 +91,90 @@ module.exports = app => {
 	});
 
 	// ===========================================================================
+
+	app.post("/categories/link", requireLogin, async (req, res) => {
+		
+		// Target adds as parent to source
+		// Source adds as child to target
+
+		Category.update(
+			{
+				_id: req.body.sourceId
+			},
+			{
+				$push: {
+					parentCategories: {
+						categoryId: req.body.targetId
+					}
+				}
+			},
+			async (err, result) => {
+				if (result) {
+					Category.update(
+						{
+							_id: req.body.targetId
+						},
+						{
+							$push: {
+								childCategories: {
+									categoryId: req.body.sourceId
+								}
+							}
+						},
+						async (err, result) => {
+							if (result) {
+								res.json(result);
+							} else if (err) {
+								res.send(err);
+							}
+						}
+					);
+				}
+			}
+		);
+	});
+
+	// ===========================================================================
+
+	app.post("/categories/unlink", requireLogin, async (req, res) => {
+		Category.update(
+			{
+				_id: req.body.sourceId
+			},
+			{
+				$pull: {
+					parentCategories: {
+						categoryId: req.body.targetId
+					}
+				}
+			},
+			async (err, result) => {
+				if (result) {
+					Category.update(
+						{
+							_id: req.body.targetId
+						},
+						{
+							$pull: {
+								childCategories: {
+									categoryId: req.body.sourceId
+								}
+							}
+						},
+						async (err, result) => {
+							if (result) {
+								res.json(result);
+							} else if (err) {
+								res.send(err);
+							}
+						}
+					);
+				}
+			}
+		);
+	})
+
+	// ===========================================================================
 };
 
 const buildQuery = criteria => {
